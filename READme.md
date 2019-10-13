@@ -3,7 +3,7 @@
 Flask SQL Alchemy app creating, getting and deleting users from a sqlite database
 
 
-# Installation
+## Installation
 
 git clone repository. Then, 
 
