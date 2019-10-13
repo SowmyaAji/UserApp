@@ -1,6 +1,6 @@
 ## Overview: 
 
-Flask SQL Alchemy app creating, getting and deleting users from a sqlite database
+Flask SQL Alchemy app creating, getting, updating and deleting [CRUD] users from a sqlite database
 
 
 ## Installation

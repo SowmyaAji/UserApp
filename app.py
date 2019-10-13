@@ -23,7 +23,7 @@ class User(db.Model):
 
 @app.route('/')
 def home():
-    return '<h1> Welcome to the users app. </h1> <br> <h2> Use the following routes: </h2> <br> <ul> <li>To add new users:  localhost:5000/<name>/<location><br>(replace the variables name and location with the information you want to add without using the angle brackets) </li><li> To delete users:  localhost:5000/delete/<location></li><li> To see single user: localhost:5000/<name></li><li> To see list of users:  localhost:5000/users </li> </ul>'
+    return '<h1> Welcome to the users app. </h1> <br> <h2> Use the following routes: </h2> <br> <ul> <li>To add new users:  localhost:5000/<name>/<location><br>(replace the variables name and location with the information you want to add without using the angle brackets) </li><li> To delete users:  localhost:5000/delete/<location></li><li> To see single user: localhost:5000/<name></li><li> To see list of users:  localhost:5000/users </li><li>To update user name and location: localhost:5000/edit/<id>/<new_name>/<new_location><br> (replace new_name and new_location with the updates without using angle brackets. Both have to be given, if you want to replace just one, give the old name as the other variable in the url)</li> </ul>'
 
 # create new object using the url below (change the variables in the url and add new ones in the url itself to create)
 
@@ -64,3 +64,12 @@ def delete_user(location):
     db.session.delete(user)
     db.session.commit()
     return '<h1>User deleted!</h1>'
+
+
+@app.route('/edit/<id>/<new_name>/<new_location>')
+def update_user(id, new_name, new_location):
+    user = User.query.filter_by(id=id).first()
+    user.name = new_name
+    user.location = new_location
+    db.session.commit()
+    return f' { user.name } is at { user.location }'
